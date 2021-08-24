@@ -178,7 +178,7 @@ YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
 RAM_TEKS_KOSTUM = os.environ.get("RAM_TEKS_KOSTUM") or "ㅤ"
 
 # Untuk Melihat Repo
-REPO_NAME = os.environ.get("REPO_NAME") or "⭐BEBEK-UBOT⭐"
+REPO_NAME = os.environ.get("REPO_NAME") or "⚡BEBEK-UBOT⚡"
 
 # Default .alive Name
 ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
@@ -522,7 +522,7 @@ with bot:
                 result = builder.photo(
                     file=ramlogo,
                     link_preview=False,
-                    text=f"{REPO_NAME}\n\n𝗣𝗘𝗠𝗜𝗟𝗜𝗞 𝗕𝗢𝗧 : {DEFAULTUSER}\n\n💫 𝗩𝗘𝗥𝗦𝗜 𝗕𝗢𝗧 : `7.0`\n💫 𝗠𝗢𝗗𝗨𝗟𝗘𝗦 : `{len(plugins)}`\n\n🔥 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 : [{DEFAULTUSER}]({OWNER_BOT}) ".format(
+                    text=f"{REPO_NAME}\n\n𝗣𝗘𝗠𝗜𝗟𝗜𝗞 𝗕𝗢𝗧 : {DEFAULTUSER}\n\n⚡ 𝗩𝗘𝗥𝗦𝗜 𝗕𝗢𝗧 : `7.0`\n⚡ 𝗠𝗢𝗗𝗨𝗟𝗘𝗦 : `{len(plugins)}`\n\n🔥 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 : [{DEFAULTUSER}]({OWNER_BOT}) ".format(
                         len(dugmeler),
                     ),
                     buttons=buttons,
