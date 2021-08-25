@@ -1,4 +1,10 @@
-# System Stats RAM-UBOT
+# Copyright (C) 2019 The Raphielscape Company LLC.
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+#
+""" Userbot module for getting information about the server. """
+
 
 import asyncio
 from asyncio import create_subprocess_exec as asyncrunapp
@@ -6,15 +12,13 @@ from asyncio.subprocess import PIPE as asyncPIPE
 from platform import python_version, uname
 from shutil import which
 from os import remove
-from telethon import version
 from telethon import __version__, version
 import platform
 import sys
 import time
 from datetime import datetime
 import psutil
-
-from userbot import ALIVE_LOGO, ALIVE_NAME, BOT_VER, CMD_HELP, RAM_TEKS_KOSTUM, IG_ALIVE, REPO_NAME, GROUP_LINK, StartTime, bot
+from userbot import ALIVE_LOGO, ALIVE_NAME, BOT_VER, CMD_HELP, ROSE_TEKS_KUSTOM, StartTime, UPSTREAM_REPO_BRANCH, bot
 from userbot.events import register
 
 
@@ -44,6 +48,7 @@ async def get_readable_time(seconds: int) -> str:
 
     for x in range(len(time_list)):
         time_list[x] = str(time_list[x]) + time_suffix_list[x]
+
     if len(time_list) == 4:
         up_time += time_list.pop() + ", "
 
@@ -145,7 +150,7 @@ async def bot_ver(event):
             stderr=asyncPIPE,
         )
         stdout, stderr = await ver.communicate()
-        verout = str(stdout.decode().strip()) + str(stderr.decode().strip())
+        str(stdout.decode().strip()) + str(stderr.decode().strip())
 
         rev = await asyncrunapp(
             "git",
@@ -159,9 +164,9 @@ async def bot_ver(event):
         revout = str(stdout.decode().strip()) + str(stderr.decode().strip())
 
         await event.edit(
-            "**☛**BEBEK-UBOT Versi:** \n "
-            f"{verout}"
-            "\n**☛**Revisi:**\n "
+            "**⚜-**⚡Skyzu-Userbot⚡ Versi:** \n "
+            f"heads/Skyzu-Userbot-0-x634i7u1"
+            "\n**⚜-**Revisi:**\n "
             f"{revout}"
         )
     else:
@@ -218,37 +223,28 @@ async def pipcheck(pip):
         await pip.edit("Gunakan `.help pip` Untuk Melihat Contoh")
 
 
-@register(outgoing=True, pattern=r"^\.(?:ram|rambot)\s?(.)?")
+@register(outgoing=True, pattern=r"^\.(?:skyzualive)\s?(.)?")
 async def amireallyalive(alive):
     user = await bot.get_me()
     await get_readable_time((time.time() - StartTime))
-    await alive.edit("`Perkenalan diri...`")
-    await asyncio.sleep(1)
-    await alive.edit("⚡")
-    await asyncio.sleep(3)
     output = (
-        f"**     ۩  ⬚⃝⃟    {REPO_NAME} ⬚⃝⃟     ۩ ** \n\n"
-        f"\n__**{RAM_TEKS_KOSTUM}**__\n"
-        f"**▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰**\n"
-        f"**🤑 TUAN** \n"
-        f" ➥ `{DEFAULTUSER}` \n"
-        f"**😋 Username** \n"
-        f" ➥ `@{user.username}` \n"
-        f"╭✠╼━━━━━━❖━━━━━━━✠╮\n"
-        f"┣• `🙈 Telethon :`Ver {version.__version__} \n"
-        f"┣• `🥴 Python   :`Ver {python_version()} \n"
-        f"┣• `🤖 Bot Ver  :`7.0 \n"
-        f"┣• `✨ Modules  :`{len(modules)} \n"
-        f"╰✠╼━━━━━━❖━━━━━━━✠╯\n"
-        f"▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰ \n"
-        f"[𝐈𝐍𝐒𝐓𝐀𝐆𝐑𝐀𝐌]({IG_ALIVE}) || [{REPO_NAME}](https://github.com/superbebek/BEBEK-USERBOT) || [𝐆𝐑𝐎𝐔𝐏]({GROUP_LINK}) \n"
-        f"▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰")
+        f"丂Ҝㄚ乙ㄩ 卂ㄥ丨ᐯ乇\n\n"
+        f"\n__**{ROSE_TEKS_KUSTOM}**__\n\n\n"
+        f"╭✠╼━━━━━━━━━━━━━━━✠╮\n"
+        f"➥ **Name** : `{DEFAULTUSER}` \n"
+        f"➥ **Username** : @{user.username} \n"
+        f"➥ **Telethon** : `{version.__version__}` \n"
+        f"➥ **Python**   : `{python_version()}` \n"
+        f"➥ **Bot Ver**  : `{BOT_VER}` \n"
+        f"➥ **Modules**  : `{len(modules)}` \n"
+        f"╰✠╼━━━━━━━━━━━━━━━✠╯\n"
+        f"[ɢʀᴏᴜᴘꜱ](https://t.me/GroupVirtualMusic) | [ʙᴏᴛᴏꜰ](https://t.me/{user.username}) | [ɢɪᴛʜᴜʙ](https://github.com/Askarbot/Skyzu-Userbot)")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
             await alive.delete()
             msg = await bot.send_file(alive.chat_id, logo, caption=output)
-            await asyncio.sleep(50)
+            await asyncio.sleep(200)
             await msg.delete()
         except BaseException:
             await alive.edit(
@@ -263,29 +259,25 @@ async def amireallyalive(alive):
         await alive.delete()
 
 
-@register(outgoing=True, pattern=r"^\.(?:ralive|ron)\s?(.)?")
+@register(outgoing=True, pattern=r"^\.(?:skyzuon)\s?(.)?")
 async def amireallyalive(alive):
-    user = await bot.get_me()
+    await bot.get_me()
     await get_readable_time((time.time() - StartTime))
     output = (
-        f"**╭✠╼━━━━━━❖━━━━━━━✠╮**\n"
-        f"       **♕  ⚡BEK-UBOT⚡  ♕** \n"
-        f"**╰✠╼━━━━━━❖━━━━━━━✠╯**\n"
-        f"❃ **Tuan**             ➥ `{DEFAULTUSER}` \n"
-        f"❃ **Username**    ➥ `@{user.username}` \n"
-        f"❃ **Telethon**       ➥ `Versi {version.__version__}` \n"
-        f"❃ **Python**          ➥ `Versi {python_version()}` \n"
-        f"❃ **Versi Bot**      ➥ `7.0` \n"
-        f"❃ **Modul**           ➥ `{len(modules)}` \n\n"
-        f"**▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰**\n"
-        f"[{REPO_NAME}](https://github.com/superbebek/BEBEK-USERBOT) || [𝗚𝗥𝗢𝗨𝗣]({GROUP_LINK}) || [𝗜𝗡𝗦𝗧𝗔𝗚𝗥𝗔𝗠]({IG_ALIVE})\n"
-        f"**▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰ **")
+        f"●▬▬▬▬▬▬ஜ۩۞۩ஜ▬▬▬▬▬▬● \n"
+        f"✾ 🤴 • `ᴏᴡɴᴇʀ :`[Sƙȥυ](t.me/skyzuuuu)             ㅤ \n"
+        f"✾ 🖥️ • `ꜱʏꜱᴛᴇᴍ. :`Ubuntu 20.10            \n"
+        f"✾ ⚙️ • `ᴛᴇʟᴇᴛʜᴏɴ :`v.{version.__version__}                ㅤㅤ  \n"
+        f"✾ 🐍 • `ᴘʏᴛʜᴏɴ. :`v.{python_version()} ㅤㅤ\n"
+        f"✾ 👾 • `ʙᴏᴛ :`v.{BOT_VER}                ㅤㅤㅤ \n"
+        f"✾ 📂 • `ᴍᴏᴅᴜʟᴇ :`{len(modules)} ㅤㅤㅤㅤㅤㅤㅤ   \n"
+        f"●▬▬▬▬▬▬ஜ۩۞۩ஜ▬▬▬▬▬▬●")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
             await alive.delete()
             msg = await bot.send_file(alive.chat_id, logo, caption=output)
-            await asyncio.sleep(50)
+            await asyncio.sleep(200)
             await msg.delete()
         except BaseException:
             await alive.edit(
@@ -301,37 +293,37 @@ async def amireallyalive(alive):
 
 
 @register(outgoing=True, pattern=r"^\.(?:alive|on)\s?(.)?")
-async def amireallyalive(alive):
+async def redis(alive):
     user = await bot.get_me()
     await get_readable_time((time.time() - StartTime))
-    await alive.edit("`Perkenalan diri...⚡`")
-    await asyncio.sleep(1)
+    await alive.edit("__Sedang Memuat.__")
+    await alive.edit("__Sedang Memuat..__")
+    await alive.edit("__Sedang Memuat.__")
+    await alive.edit("__Sedang Memuat..__")
+    await alive.edit("__Sedang Memuat...__")
+    await alive.edit("__Sedang Memuat..__")
+    await alive.edit("__Sedang Memuat...__")
     await alive.edit("⚡")
-    await asyncio.sleep(3)
+    await asyncio.sleep(2)
     output = (
-        f"**✠╼━━━━━━❖━━━━━━━✠ ** \n"
-        f"**          ⚡BEK-UBOT⚡** \n"
-        f"**✠╼━━━━━━❖━━━━━━━✠** \n"
-        f"╭✠╼━━━━━━❖━━━━━━━✠╮ \n"
-        f"┣|• `🤴 Majikan  :`{DEFAULTUSER} \n"
-        f"┣|• `💳 Username :`@{user.username} \n"
-        f"┣|• `👺 Telethon :`Ver {version.__version__} \n"
-        f"┣|• `🐉 Python   :`Ver {python_version()} \n"
-        f"╰✠╼━━━━━━❖━━━━━━━✠╯ \n"
-        f"╭✠╼━━━━━━❖━━━━━━━✠╮ \n"
-        f"┣|• `Branch      :`BEK-UBOT \n"
-        f"┣|• `Bot Ver     :`7.0 \n"
-        f"┣|• `Modules     :`{len(modules)} Modules \n"
-        f"╰✠╼━━━━━━❖━━━━━━━✠╯ \n"
-        f"▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰ \n"
-        f"[{REPO_NAME}](https://github.com/superbebek/BEBEK-USERBOT) || [𝐆𝐑𝐎𝐔𝐏]({GROUP_LINK}) || [𝐈𝐍𝐒𝐓𝐀𝐆𝐑𝐀𝐌]({IG_ALIVE}) \n"
-        f"▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰")
+        f"╭✠╼━━━━━━━━━━━━━━━━━━━✠╮\n"
+        f"┃✧ **Name     :** {DEFAULTUSER} \n"
+        f"┃✧ **Username :** @{user.username} \n"
+        f"┃✧ **Telethon :** Ver {version.__version__} \n"
+        f"┃✧ **Python   :** Ver {python_version()} \n"
+        f"┃✧ **Branch   :** {UPSTREAM_REPO_BRANCH} \n"
+        f"┃✧ **Bot Ver  :** {BOT_VER} \n"
+        f"┃✧ **Modules  :** {len(modules)} Modules \n"
+        f"┃✧ **GitHub   :** [Sƙȥυ](https://github.com/Askarbot/Skyzu-Userbot) \n"
+        f"┃✧ **Groups   :** [Groups](https://t.me/GroupVirtualMusic) \n"
+        f"┃✧ **Owner    :** [Skyzu](https://t.me/skyzuuuu) \n"
+        f"╰✠╼━━━━━━━━━━━━━━━━━━━✠╯")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
             await alive.delete()
             msg = await bot.send_file(alive.chat_id, logo, caption=output)
-            await asyncio.sleep(50)
+            await asyncio.sleep(500)
             await msg.delete()
         except BaseException:
             await alive.edit(
@@ -346,41 +338,49 @@ async def amireallyalive(alive):
         await alive.delete()
 
 
-@register(outgoing=True, pattern=r"^\.aliveu")
+@register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
+    """ For .aliveu command, change the username in the .alive command. """
     message = username.text
-    output = ".aliveu [new user without brackets] nor can it be empty"
-    if message != ".aliveu" and message[7:8] == " ":
+    output = ".aliveu [new username] tidak boleh kosong"
+    if not (message == ".aliveu" and message[7:8] != " "):
         newuser = message[8:]
-        global DEFAULTUSER
-        DEFAULTUSER = newuser
+        global DEFAULTUSER  # global statement
+        DEFAULTUSER = username
         output = "Successfully changed user to " + newuser + "!"
     await username.edit("`" f"{output}" "`")
 
 
 @register(outgoing=True, pattern=r"^\.resetalive$")
 async def amireallyalivereset(ureset):
-    global DEFAULTUSER
+    global DEFAULTUSER  # global statement
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Successfully reset user for alive!" "`")
 
 
 CMD_HELP.update({
-    "sistem":
-    "`.sysd`\
-\nUsage: Shows system information using neofetch.\
-\n\n`.botver`\
-\nUsage: Shows the userbot version.\
-\n\n`.pip` <module(s)>\
-\nUsage: Does a search of pip modules(s).\
-\n\n`.start`\
-\nUsage: Type .start to see whether your bot is working or not.\
-\n\n`.aliveu` <text>\
-\nUsage: Changes the 'user' in alive to the text you want.\
-\n\n`.resetalive`\
-\nUsage: Resets the user to default.\
-\n\n`.db`\
-\nUsage:Shows database related info.\
-\n\n.`.spc`\
-\nUsage:Show system specification."
+    "system":
+    "𝘾𝙤𝙢𝙢𝙖𝙣𝙙: `.sysd`"
+    "\n↳ : Shows system information using neofetch."
+    "\n\n𝘾𝙤𝙢𝙢𝙖𝙣𝙙: `.db`"
+    "\n↳ : Shows database related info."
+    "\n\n𝘾𝙤𝙢𝙢𝙖𝙣𝙙: `.spc`"
+    "\n↳ : Show system specification."
 })
+CMD_HELP.update({
+    "alive":
+    "𝘾𝙤𝙢𝙢𝙖𝙣𝙙: `.alive` or `.on` or `skyzu`"
+    "\n↳ : To see whether your bot is working or not."
+    "\n\n𝘾𝙤𝙢𝙢𝙖𝙣𝙙: `.aliveu` <text>"
+    "\n↳ : Changes the 'user' in alive to the text you want."
+    "\n\n𝘾𝙤𝙢𝙢𝙖𝙣𝙙: `.restalive`"
+    "\n↳ : Resets the user to default."
+})
+CMD_HELP.update(
+    {
+        "botversion":
+        "𝘾𝙤𝙢𝙢𝙖𝙣𝙙: `.botver`"
+        "\n↳ : Shows the userbot version."
+        "\n\n𝘾𝙤𝙢𝙢𝙖𝙣𝙙: `.pip` <module(s)>"
+        "\n↳ : Does a search of pip modules(s)."
+    })
